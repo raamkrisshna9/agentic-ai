@@ -29,17 +29,17 @@ MODLIBS=           $(LOCALMODLIBS) $(BASEMODLIBS)
 
 # === Variables set by configure
 VERSION=	3.11
-srcdir=		/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work
-VPATH=		/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work
-abs_srcdir=	/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work
-abs_builddir=	/private/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work/build-static
+srcdir=		/opt/miniconda3/conda-bld/python-split_1761071005587/work
+VPATH=		/opt/miniconda3/conda-bld/python-split_1761071005587/work
+abs_srcdir=	/opt/miniconda3/conda-bld/python-split_1761071005587/work
+abs_builddir=	/opt/miniconda3/conda-bld/python-split_1761071005587/work/build-static
 
 
 CC=		arm64-apple-darwin20.0.0-clang
 CXX=		arm64-apple-darwin20.0.0-clang++
 MAINCC=		$(CC)
 LINKCC=		$(PURIFY) $(MAINCC)
-AR=		/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/_build_env/bin/arm64-apple-darwin20.0.0-llvm-ar
+AR=		/opt/miniconda3/conda-bld/python-split_1761071005587/_build_env/bin/arm64-apple-darwin20.0.0-llvm-ar
 READELF=	:
 SOABI=		cpython-311-darwin
 LDVERSION=	$(VERSION)$(ABIFLAGS)
@@ -49,7 +49,7 @@ GITTAG=
 GITBRANCH=	
 PGO_PROF_GEN_FLAG=-fprofile-instr-generate
 PGO_PROF_USE_FLAG=-fprofile-instr-use=code.profclangd
-LLVM_PROF_MERGER=/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/_build_env/bin/llvm-profdata merge -output=code.profclangd *.profclangr
+LLVM_PROF_MERGER=/opt/miniconda3/conda-bld/python-split_1761071005587/_build_env/bin/llvm-profdata merge -output=code.profclangd *.profclangr
 LLVM_PROF_FILE=LLVM_PROFILE_FILE="code-%p.profclangr"
 LLVM_PROF_ERR=no
 DTRACE=         
@@ -74,7 +74,7 @@ INSTALL_DATA=	${INSTALL} -m 644
 # rather than figuring out exactly which, we always give them executable mode.
 INSTALL_SHARED= ${INSTALL} -m 755
 
-MKDIR_P=	/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work/install-sh -c -d
+MKDIR_P=	/opt/miniconda3/conda-bld/python-split_1761071005587/work/install-sh -c -d
 
 MAKESETUP=      $(srcdir)/Modules/makesetup
 
@@ -82,7 +82,7 @@ MAKESETUP=      $(srcdir)/Modules/makesetup
 OPT=		-DNDEBUG -fwrapv -O2 -Wall
 BASECFLAGS=	
 BASECPPFLAGS=	-IObjects -IInclude -IPython
-CONFIGURE_CFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -fdebug-prefix-map=/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work=/usr/local/src/conda/python-3.11.13 -fdebug-prefix-map=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env=/usr/local/src/conda-prefix -arch arm64 
+CONFIGURE_CFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -ftree-vectorize -fPIC -fstack-protector-strong -O2 -pipe -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -fdebug-prefix-map=/opt/miniconda3/conda-bld/python-split_1761071005587/work=/usr/local/src/conda/python-3.11.14 -fdebug-prefix-map=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env=/usr/local/src/conda-prefix -arch arm64 
 # CFLAGS_NODIST is used for building the interpreter and stdlib C extensions.
 # Use it when a compiler flag should _not_ be part of the distutils CFLAGS
 # once Python is installed (Issue #21121).
@@ -94,8 +94,8 @@ CONFIGURE_LDFLAGS_NODIST=  -Wl,-export_dynamic -g
 # LDFLAGS_NOLTO is an extra flag to disable lto. It is used to speed up building
 # of _bootstrap_python and _freeze_module tools, which don't need LTO.
 CONFIGURE_LDFLAGS_NOLTO==thin
-CONFIGURE_CPPFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -mmacosx-version-min=11.1 -I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include
-CONFIGURE_LDFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib
+CONFIGURE_CPPFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -mmacosx-version-min=11.0 -I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include
+CONFIGURE_LDFLAGS=	-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib
 # Avoid assigning CFLAGS, LDFLAGS, etc. so users can use them on the
 # command line to append to these values without stomping the pre-set
 # values.
@@ -185,7 +185,7 @@ PYTHONFRAMEWORKINSTALLDIR=
 # Deployment target selected during configure, to be checked
 # by distutils. The export statement is needed to ensure that the
 # deployment target is active during build.
-MACOSX_DEPLOYMENT_TARGET=11.1
+MACOSX_DEPLOYMENT_TARGET=11.0
 export MACOSX_DEPLOYMENT_TARGET
 
 # Option to install to strip binaries
@@ -357,7 +357,7 @@ EXEMODE=	755
 FILEMODE=	644
 
 # configure script arguments
-CONFIG_ARGS=	 '--prefix=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env' '--build=arm64-apple-darwin20.0.0' '--host=arm64-apple-darwin20.0.0' '--enable-ipv6' '--with-ensurepip=no' '--with-tzpath=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/share/zoneinfo' '--with-computed-gotos' '--with-system-ffi' '--with-system-expat' '--enable-loadable-sqlite-extensions' '--with-tcltk-includes=-I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include' '--with-tcltk-libs=-L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -ltcl8.6 -ltk8.6' '--with-platlibdir=lib' '--with-lto' '--enable-optimizations' '-oldincludedir=/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/_build_env/arm64-apple-darwin20.0.0/sysroot/usr/include' '--disable-shared' 'PROFILE_TASK=-m test --pgo' 'build_alias=arm64-apple-darwin20.0.0' 'host_alias=arm64-apple-darwin20.0.0' 'PKG_CONFIG_PATH=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib/pkgconfig' 'MACHDEP=darwin' 'CC=arm64-apple-darwin20.0.0-clang' 'CFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -ftree-vectorize -fPIC -fPIE -fstack-protector-strong -O2 -pipe -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -fdebug-prefix-map=/var/folders/k1/30mswbxs7r1g6zwn8y4fyt500000gp/T/abs_fbeorhtu9x/croot/python-split_1749129265844/work=/usr/local/src/conda/python-3.11.13 -fdebug-prefix-map=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env=/usr/local/src/conda-prefix -arch arm64 ' 'LDFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -Wl,-pie -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX11.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -mmacosx-version-min=11.1 -I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include'
+CONFIG_ARGS=	 '--prefix=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env' '--build=arm64-apple-darwin20.0.0' '--host=arm64-apple-darwin20.0.0' '--enable-ipv6' '--with-ensurepip=no' '--with-tzpath=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/share/zoneinfo' '--with-computed-gotos' '--with-system-ffi' '--with-system-expat' '--enable-loadable-sqlite-extensions' '--with-tcltk-includes=-I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include' '--with-tcltk-libs=-L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -ltcl8.6 -ltk8.6' '--with-platlibdir=lib' '--with-lto' '--enable-optimizations' '-oldincludedir=/opt/miniconda3/conda-bld/python-split_1761071005587/_build_env/arm64-apple-darwin20.0.0/sysroot/usr/include' '--disable-shared' 'PROFILE_TASK=-m test --pgo' 'build_alias=arm64-apple-darwin20.0.0' 'host_alias=arm64-apple-darwin20.0.0' 'PKG_CONFIG_PATH=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib/pkgconfig' 'MACHDEP=darwin' 'CC=arm64-apple-darwin20.0.0-clang' 'CFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -ftree-vectorize -fPIC -fstack-protector-strong -O2 -pipe -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -fdebug-prefix-map=/opt/miniconda3/conda-bld/python-split_1761071005587/work=/usr/local/src/conda/python-3.11.14 -fdebug-prefix-map=/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env=/usr/local/src/conda-prefix -arch arm64 ' 'LDFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -Wl,-headerpad_max_install_names -Wl,-dead_strip_dylibs -Wl,-rpath,/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib -L/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/lib' 'CPPFLAGS=-isysroot /Library/Developer/CommandLineTools/SDKs/MacOSX12.1.sdk -D_FORTIFY_SOURCE=2 -isystem /Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include -mmacosx-version-min=11.0 -I/Users/ramakrishnagollapalli/Documents/agentic-ai/module-1-langchain/my_env/include' 'CPP=arm64-apple-darwin20.0.0-clang-cpp'
 
 
 # Subdirectories with code
@@ -407,7 +407,7 @@ BUILDPYTHON=	python$(BUILDEXE)
 
 HOSTRUNNER= 
 
-PYTHON_FOR_REGEN?=python3.9
+PYTHON_FOR_REGEN?=python3
 UPDATE_FILE=$(PYTHON_FOR_REGEN) $(srcdir)/Tools/scripts/update_file.py
 PYTHON_FOR_BUILD=./$(BUILDPYTHON) -E
 # Single-platform builds depend on $(BUILDPYTHON). Cross builds use an
