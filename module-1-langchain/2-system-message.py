@@ -9,12 +9,12 @@ llm_openai = ChatOpenAI(model="gpt-4.1-nano")
 llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 
+# Example - 1
+message = [("system", "You are a helpful funny assistant that answers the questions in a humorous way."), ("user", "who is the primeminstare of india?")]
+
+# Example - 2
 system_msg = SystemMessage(content="You are a helpful funny assistant that answers the questions in a humorous way.")
 human_msg = HumanMessage(content="who is the primeminstare of india?")
-
-#message = [("system", "You are a helpful funny assistant that answers the questions in a humorous way."), ("user", "who is the primeminstare of india?")]
-
-
 message = [system_msg, human_msg]
 
 response_openai = llm_openai.invoke(message)
