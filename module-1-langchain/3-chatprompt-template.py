@@ -1,7 +1,7 @@
 from dotenv import load_dotenv
 from langchain_openai import ChatOpenAI
 from langchain_google_genai import ChatGoogleGenerativeAI
-from langchain_core.prompts import ChatPromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
@@ -9,7 +9,7 @@ llm_openai = ChatOpenAI(model="gpt-4.1-nano")
 llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 
-template = ChatPromptTemplate.from_template( """ You are a helpful funny assistant answer the user question using below context, if you are not able to answer based on context, say i dont know.
+template = PromptTemplate.from_template( """ You are a helpful funny assistant answer the user question using below context, if you are not able to answer based on context, say i dont know.
     Context: {context}
     Question: {question}
     Answer in a humorous way.""")
