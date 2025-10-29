@@ -9,7 +9,11 @@ llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash",
 
 prompt_template = ChatPromptTemplate.from_messages([("system", "You are a exprt assistant answer the user question in short and crisp manner and alos restrict the short and clean answers"),
                                          ("user", """what is {topic}, explain in {style} for the {audiance}
-                                          Answer in {length}""")])
+                                          Answer in {length}
+                                          start: Neat and clean
+                                          Body: Detailed explanation
+                                          End: Summary""")
+                                          ])
 # Typically system message is used to set the behavior of the assistant, while user message contains the actual prompt with placeholders.
 # In general system message not have variable placeholders, only user message has variable placeholders.
 

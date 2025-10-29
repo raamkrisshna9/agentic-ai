@@ -1,44 +1,91 @@
+# Usecase:
+# Implement a product details extracter using dynamic prompt templates and output parser with validation.
+# Input: Product name and description text.
+# Output: JSON object containing product name, categeory, price_estimage, pros[], cons[].
+# Follow the response vlidtion workflow mentioned below.
+
+# Response validation workflow:
+# 1. LLM create the resonse.
+# 2. Prase the response on JSON parser.
+# 3. Validate the parsed response against a schema using Pydantic model.
+# 4. If validation fails, use the error message to guide the LLM to correct the response and re-attempt.
+# 5. Repeat until a valid response is obtained or a maximum number of attempts is reached.
+
 from dotenv import load_dotenv
 from langchain_google_genai import ChatGoogleGenerativeAI
 from langchain_core.prompts import ChatPromptTemplate
+import argparse
+from pydantic import BaseModel, ValidationError, Field
+from typing import Optional, List
+from langchain_core.output_parsers import PydanticOutputParser # Used to create the response output schema
+import json
+
 
 load_dotenv()
 llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash", 
                                   temperature=0.5,
                                   max_output_tokens=1024)
 
-prompt_template = ChatPromptTemplate.from_messages([("system", "You are a exprt assistant answer the user question in short and crisp manner and alos restrict the short and clean answers"),
-                                         ("user", """what is {topic}, explain in {style} for the {audiance}
-                                          Answer in {length}""")])
-# Typically system message is used to set the behavior of the assistant, while user message contains the actual prompt with placeholders.
-# In general system message not have variable placeholders, only user message has variable placeholders.
 
-prompt_template_values = { "topic": "Quantum Computing",
-                  "style": "simple words",
-                  "audiance": "post graduate students",
-                  "length": "in less than 1000 words"}  
+prompt_template = ChatPromptTemplate.from_messages([("system", "you are a productduct detials extracter, extract the product details from the user input and provide the response in json format as per the schema provided"),
+                                         ("user", """Extract the product details from the below product description.
+                                          Product Name: {product_name}
+                                          Product Description: {product_description}
+                                          Maximum Retries: {max_retries}
+                                          Provide the response in JSON format and follow below rules:
+                                          - {format_instructions}
+                                          - The response should be a valid JSON object.
+                                          - Dont include any explanations, only provide the JSON object as response.""")
+                                          ])
 
-# Prompt_values should be a dictionary containing the values for the placeholders defined in the prompt template. 
-# max_output_tokens: The maximum number of tokens to generate in the output at LLM level. Adjust this based on your expected response length.
-# The max_output_tokens and length mentioned in user message were works at different levels to control the respse length.
-# max_output_tokens says max tokens used in any instance of of response.
-# length variable in user message says a instance response lengh
+arg_parser = argparse.ArgumentParser(description="Dynamic Prompt Template Input")
+arg_parser.add_argument("--product_name", type=str, required=True, help="Name of the product")
+arg_parser.add_argument("--product_description", type=str, required=True, help="Description of the product")
+arg_parser.add_argument("--max_retries", type=int, required=False, default=3, help="Maximum number of retries for validation")
+args = arg_parser .parse_args()
+
+class ProductDetails(BaseModel):
+    product_name: str = Field(..., description="Name of the product", min_length=1)
+    category: str = Field(..., categeory="Categery of the product", min_length=1)
+    price_estimate: Optional[float] = Field(None, description="price estimation of the product", gt=0)
+    pros: List[str] = Field(default=list, min_items=1, description="List of pros of the product")
+    cons: List[str] = Field(default=list, min_items=1, description="List of cons of the product")
+
+output_parser = PydanticOutputParser(pydantic_object=ProductDetails)
+format_instructions = output_parser.get_format_instructions()
+print("Format Instructions:")
+print("-------------------")
+print(format_instructions)
+
+prompt_template_values = { "product_name": args.product_name,
+                           "product_description": args.product_description,
+                           "max_retries": args.max_retries,
+                           "format_instructions": format_instructions }
 
 chain = prompt_template | llm_google
-response_google = chain.invoke(prompt_template_values)
 
-print("Google AI Response Text:")
-print("----------------")
-print(response_google.text) #print(response_google.content) both are same
-print("Google AI Whole Response:")
-print("----------------")
-print(response_google)
-print("\nResponse Metadata:")
-print("----------------")
-print(response_google.response_metadata) 
+def extract_product_details(chain, prompt_template_values, output_parser, max_retries):
+    retries = 0
+    prompt_values = dict(prompt_template_values)
+    prompt_values.setdefault("validation_error", "")
+    
+    while retries < max_retries:
+        response = chain.invoke(prompt_values)
+        try:
+            parsed_output = output_parser.parse(response.text)
+            return parsed_output
+        except (ValidationError, json.JSONDecodeError) as e:
+            error_msg = str(e)
+            print(f"Validation error: {error_msg}. Retrying... ({retries+1}/{max_retries})")
+            retries += 1
+            prompt_values["validation_error"] = error_msg
+    raise Exception("Maximum retries reached. Could not extract valid product details.")
 
-# The response_metadata attribute provides additional information about the response, such as token usage, latency, etc used for debugging purposes.
+
+product_details = extract_product_details(chain, prompt_template_values, output_parser, args.max_retries)
+print("Extracted Product Details:")
+print("-------------------------")
+print(product_details.model_dump_json(indent=2))
 
 
-# Note: In this example the prompt template values were hardcoded, we can pass the values dynamically based on user input or other sources as needed uing argparse python package.
-
+# python 7-dynamic-prompt-templates-outputparser.py --product_name "ihone 17" --product_description "The Smartphone iphone 17 features a stunning display, powerful processor, and long-lasting battery life. It offers excellent camera quality and a sleek design. However, it lacks expandable storage and has a higher price point compared to competitors." --max_retries 3
