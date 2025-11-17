@@ -19,6 +19,7 @@ template_values = {
 } 
 
 # Example - 2
+#from_messages is a class method that creates a ChatPromptTemplate instance from a list of message tuples.
 template = ChatPromptTemplate.from_messages([("system", "You are a helpful funny assistant answer the user question using below context, if you are not able to answer based on context in humerous way, say i dont know"),
                                              ("user", "Context: {context}\nQuestion: {question}")])
 
@@ -27,6 +28,7 @@ template_values = {
     "question": "who is the primeminstare of india?"
 }
 
+#chaining the prompt template with the language model, uses the | operator to create a processing chain.
 chain = template | llm_google
 response_google = chain.invoke(template_values)
 

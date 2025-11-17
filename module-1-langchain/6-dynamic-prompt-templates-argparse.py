@@ -14,12 +14,15 @@ prompt_template = ChatPromptTemplate.from_messages([("system", "You are a exprt 
                                          ("user", """what is {topic}, explain in {style} for the {audiance}
                                           Answer in {length}""")])
 
+#ArgumentParser method registers a new argument parser object to handle command-line arguments.
 arg_parser = argparse.ArgumentParser(description="Dynamic Prompt Template Input")
+#add_argument method defines the expected command-line arguments.
 arg_parser.add_argument("--topic", type=str, required=True, help="Topic to explain")
 arg_parser.add_argument("--style", type=str, required=True, help="Style of explanation")
 arg_parser.add_argument("--audiance", type=str, required=True, help="Target audience")
 arg_parser.add_argument("--length", type=str, required=True, help="Length of the answer")
-args = arg_parser .parse_args()
+#parse_args method parses the command-line arguments and returns them as an object.
+args = arg_parser.parse_args()
 
 prompt_template_values = { "topic": args.topic,
                            "style": args.style,

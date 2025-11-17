@@ -19,6 +19,7 @@ from pydantic import BaseModel, ValidationError, Field
 from typing import Optional, List
 from langchain_core.output_parsers import PydanticOutputParser # Used to create the response output schema
 import json
+import re
 
 
 load_dotenv()
@@ -44,15 +45,19 @@ arg_parser.add_argument("--product_description", type=str, required=True, help="
 arg_parser.add_argument("--max_retries", type=int, required=False, default=3, help="Maximum number of retries for validation")
 args = arg_parser .parse_args()
 
+
+#ProductDetails Define the Pydantic model/schema for response validation
 class ProductDetails(BaseModel):
     product_name: str = Field(..., description="Name of the product", min_length=1)
-    category: str = Field(..., categeory="Categery of the product", min_length=1)
+    category: str = Field(..., description="Category of the product", min_length=1)
     price_estimate: Optional[float] = Field(None, description="price estimation of the product", gt=0)
-    pros: List[str] = Field(default=list, min_items=1, description="List of pros of the product")
-    cons: List[str] = Field(default=list, min_items=1, description="List of cons of the product")
+    pros: List[str] = Field(default_factory=list, min_items=1, description="List of pros of the product")
+    cons: List[str] = Field(default_factory=list, min_items=1, description="List of cons of the product")
 
+#PydanticOutputParser register an output parser using the Pydantic model
 output_parser = PydanticOutputParser(pydantic_object=ProductDetails)
-format_instructions = output_parser.get_format_instructions()
+#get_format_instructions methos return the format instructions of the output parser
+format_instructions = output_parser.get_format_instructions() 
 print("Format Instructions:")
 print("-------------------")
 print(format_instructions)
@@ -60,20 +65,42 @@ print(format_instructions)
 prompt_template_values = { "product_name": args.product_name,
                            "product_description": args.product_description,
                            "max_retries": args.max_retries,
-                           "format_instructions": format_instructions }
+                           "format_instructions": format_instructions,
+                           "validation_error": "" }
 
 chain = prompt_template | llm_google
 
 def extract_product_details(chain, prompt_template_values, output_parser, max_retries):
+    #clean_response_text function cleans the LLM response text by removing unwanted characters and formatting.
+    #This  function is required because LLMs may sometimes include extraneous characters like backticks or whitespace that can interfere with parsing.
+    def clean_response_text(text: str) -> str:
+        if not isinstance(text, str):
+            return text
+        # Trim whitespace and BOM
+        text = text.strip().lstrip("\ufeff").rstrip()
+        # Remove leading triple-backtick fence with optional language tag
+        text = re.sub(r'^\s*```[^\n]*\n?', '', text)
+        # Remove trailing triple-backtick fence
+        text = re.sub(r'\n?\s*```\s*$', '', text)
+        # Remove single backticks if they wrap the entire content
+        if text.startswith('`') and text.endswith('`'):
+            text = text.strip('`').strip()
+        return text
+
     retries = 0
     prompt_values = dict(prompt_template_values)
     prompt_values.setdefault("validation_error", "")
-    
+
     while retries < max_retries:
         response = chain.invoke(prompt_values)
+        raw_text = response.text if hasattr(response, "text") else str(response)
+        cleaned_text = clean_response_text(raw_text)
+
         try:
-            parsed_output = output_parser.parse(response.text)
+            parsed_output = output_parser.parse(cleaned_text)
             return parsed_output
+            print("------------------")
+            print("Try number", retries)
         except (ValidationError, json.JSONDecodeError) as e:
             error_msg = str(e)
             print(f"Validation error: {error_msg}. Retrying... ({retries+1}/{max_retries})")
@@ -85,6 +112,7 @@ def extract_product_details(chain, prompt_template_values, output_parser, max_re
 product_details = extract_product_details(chain, prompt_template_values, output_parser, args.max_retries)
 print("Extracted Product Details:")
 print("-------------------------")
+#model_dump_json method serializes the Pydantic model instance to a JSON string with indentation for readability.
 print(product_details.model_dump_json(indent=2))
 
 

@@ -10,6 +10,7 @@ llm_google = ChatGoogleGenerativeAI(model="gemini-2.5-flash")
 
 
 # Example - 1
+#Message should be a list of tuples with (role, content)
 message = [("system", "You are a helpful funny assistant that answers the questions in a humorous way."), ("user", "who is the primeminstare of india?")]
 
 # Example - 2
