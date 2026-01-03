@@ -56,10 +56,16 @@ This document also explain the overal code structure of the project in the follo
 13. pipeline.py: This module consists of the main pipeline related code like,
     - run the RAG pipeline
     - this module is the main entry point for the RAG pipeline
-14. api_server.py: This module consists of the api server related code like,
+14. fast_api_demo.py: This module consists of the fast api demo related code like,
+    - start the fast api demo
+    - this module is the main entry point for the fast api demo
+15. api_server.py: This module consists of the api server related code like,
     - start the api server
     - this module is the main entry point for the api server
-15. frontend.py: This module consists of the frontend related code like,
+16. streamlit_demo.py: This module consists of the streamlit demo related code like,
+    - start the streamlit demo
+    - this module is the main entry point for the streamlit demo
+17. frontend.py: This module consists of the frontend related code like,
     - start the frontend
     - this module is the main entry point for the frontend
 ###########################################################################################

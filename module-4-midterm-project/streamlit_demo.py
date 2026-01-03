@@ -44,5 +44,13 @@ if st.button("Click me"):
 
 st.sidebar.header("Sidebar")
 st.sidebar.text("This is a sidebar")
+
+# Run the app
+# streamlit run streamlit_demo.py
+
+## Note:
+# Use the streamlit community cloud to deploy the app 
+# https://share.streamlit.io/
+# Login using your github account
     
 
