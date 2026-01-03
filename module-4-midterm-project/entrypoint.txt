@@ -1,0 +1,35 @@
+################################################################
+This is the document explains the execution flow of the project
+1. Initilise the virtual environment and install dependencies
+    conda create --prefix ./my_env python=3.13 -y
+    conda activate ./my_env
+    pip install -r requirements.txt --upgrade
+2. Rund the loadcorpus.py to load the corpus to the vector store
+3. Run the main.py to run the RAG pipeline
+################################################################
+
+################################################################################
+This document also explain the overal code structure of the project
+1. vector_store.py: This module consists of the vector store related code like,
+    - initilise the vector store
+    - add documents to the vector store
+    - retrieve documents from the vector store
+2. load_corpus.py: This module consists of the load corpus related code like,
+    - load corpus to the vector store
+3. retrieval.py: This module consists of the retrieval related code like,
+    - retrieve documents from the vector store
+    - retrieve documents with scores from the vector store
+4. router.py: This module consists of the router related code like,
+    - build prompt for the response generation
+    - verify context
+5. llm_client.py: This module consists of the llm client related code like,
+    - invoke the model
+    - pass the model name and prompt
+6. main.py: This module consists of the main pipeline related code like,
+    - run the RAG pipeline
+
+
+
+
+6. post_process.py: This module consists of the post process related code like,
+    - post process the response
