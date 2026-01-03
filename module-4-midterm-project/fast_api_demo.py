@@ -2,20 +2,19 @@
 # fast_api_demo.py
 ###################
 
-# This is a simple demo of FastAPI, it has 4 endpoints
-# 1. / - root endpoint/homepage
-# 2. /metrics - metrics endpoint
-# 3. /rag - rag endpoint
-# 4. /generate - generate endpoint
-
-# FastAPI : Its a web framework for building APIs, converts the python code to REST APIs
-# Benefits of using FastAPI:
-# - Automatically create API documentation using Swagger UI and expose at /docs endpoint
-# - Can use pydantic models to validate the input and output
-# - Great for model serving and API development
-# - It is fast to code as compared to other frameworks like Flask, Django, etc.
-# - It is easy to use and has a lot of features like authentication, authorization, etc.
-# - It is easy to scale and deploy.
+""" This is a simple demo of FastAPI, it has 4 endpoints
+ 1. / - root endpoint/homepage
+ 2. /metrics - metrics endpoint
+ 3. /rag - rag endpoint
+ 4. /generate - generate endpoint
+ FastAPI : Its a web framework for building APIs, converts the python code to REST APIs
+ Benefits of using FastAPI:
+ - Automatically create API documentation using Swagger UI and expose at /docs endpoint
+ - Can use pydantic models to validate the input and output
+ - Great for model serving and API development
+ - It is fast to code as compared to other frameworks like Flask, Django, etc.
+ - It is easy to use and has a lot of features like authentication, authorization, etc.
+ - It is easy to scale and deploy. """
 
 from fastapi import FastAPI
 import uvicorn

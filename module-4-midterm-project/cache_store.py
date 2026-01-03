@@ -4,6 +4,7 @@
 # But in enterprises semantic cache is more powerful and used to cache the responses based on the context.
 ##########################################################################################################
 """ This module provides functionality for simple caching responses (key to key comparison) using Redis. """
+
 import config
 import redis
 import logging

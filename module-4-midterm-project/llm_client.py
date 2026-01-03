@@ -2,6 +2,8 @@
 #llm_client.py
 ##############
 
+""" This is the LLM client for the RAG pipeline, it uses langchain to invoke the model """
+
 from langchain_openai import ChatOpenAI
 from config import TEMPERATURE, MAX_TOKENS
 from dotenv import load_dotenv

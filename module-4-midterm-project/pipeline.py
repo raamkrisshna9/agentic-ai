@@ -2,6 +2,8 @@
 # main.py
 #########
 
+""" This is the main module for the RAG pipeline, it runs the RAG pipeline """
+
 import time
 import argparse
 import logging

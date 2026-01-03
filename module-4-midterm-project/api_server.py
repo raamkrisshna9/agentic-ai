@@ -1,7 +1,7 @@
 #################
 # api_server.py
 #################
-# This is the API server for the RAG pipeline
+""" This is the API server for the RAG pipeline, runs on port 8001 """
 
 import uvicorn
 import time

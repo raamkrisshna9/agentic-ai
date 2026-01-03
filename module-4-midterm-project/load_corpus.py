@@ -5,6 +5,8 @@
 # This need to be run before running the main.py
 ################################################
 
+""" This is the corpus loader for the RAG pipeline, it loads the corpus and adds to vector store """
+
 from vector_store import initialize_redis_vector_store, add_documents_to_vector_store
 
 corpus = ["Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.",

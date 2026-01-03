@@ -2,6 +2,7 @@
 # test_retrieval.py
 # Test retrieval of documents with similarity scores from the Redis vector store
 ################################################################################
+
 """Test retrieval of documents with similarity scores from the Redis vector store."""
 
 from vector_store import initialize_redis_vector_store, retrieve_similar_documents_with_score

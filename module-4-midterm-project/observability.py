@@ -3,6 +3,8 @@
 # Promethus having metrics types Counter, Histogram, Summary, Gauge 
 ###################
 
+""" This is the observability module for the RAG pipeline, it uses prometheus to expose metrics """
+
 import logging
 from prometheus_client import Counter, Histogram, start_http_server
 

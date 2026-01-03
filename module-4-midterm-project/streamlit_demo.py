@@ -2,6 +2,9 @@
 # streamlit_demo.py
 #################
 
+"""
+This is a simple demo of Streamlit
+"""
 import streamlit as st
 
 st.title("Streamlit demo")

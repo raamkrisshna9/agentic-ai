@@ -1,13 +1,15 @@
 #################
 # postprocess.py
 #################
-# This is place to add post processing steps,
-# - Trustworthiness checks
-# - Citation Injection / Context Reference / File Location
-# - Grounding check - check if the response is grounded in the context
-# - Data Normalization - format the response to the user's expected format like JSON
-# - Addition of metadata like Confidence score, latency, used docs
-# - Removal of values of certain formats like SSN, Phone numbers, etc.
+
+"""
+ This is place to add post processing steps,
+ - Trustworthiness checks
+ - Citation Injection / Context Reference / File Location
+ - Grounding check - check if the response is grounded in the context
+ - Data Normalization - format the response to the user's expected format like JSON
+ - Addition of metadata like Confidence score, latency, used docs
+ - Removal of values of certain formats like SSN, Phone numbers, etc. """
 
 import re
 
