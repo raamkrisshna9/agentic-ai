@@ -4006,3 +4006,153 @@ Query: what is agentic ai
 2026-01-03 19:39:53,893 - root - INFO - Checking if the response is in the exact match cache
 2026-01-03 19:39:53,893 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
 2026-01-03 19:39:53,900 - root - INFO - Cache HIT for query: what is agentic ai
+2026-01-03 21:22:07,527 - root - INFO - Redis connection successful
+2026-01-03 21:22:08,840 - root - INFO - Prometheus metrics server running at http://localhost:8002/metrics
+2026-01-03 21:23:05,655 - root - INFO - Running the RAG pipeline for query: What is agentic ai?
+2026-01-03 21:23:05,656 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:05,656 - root - INFO - Checking if the response is in the exact match cache
+2026-01-03 21:23:05,656 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:05,664 - root - INFO - Cache MISS for query: What is agentic ai?
+2026-01-03 21:23:05,665 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:05,665 - root - INFO - Checking if the response is in the semantic cache
+2026-01-03 21:23:05,665 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:05,667 - root - INFO - Redisearch is available
+2026-01-03 21:23:05,675 - root - INFO - Redisearch is available
+2026-01-03 21:23:07,250 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:07,278 - root - INFO - Semantic cache MISS for query: What is agentic ai? (distance=None)
+2026-01-03 21:23:07,279 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:07,279 - root - INFO - Checking if the context is in the proximity retrieval cache
+2026-01-03 21:23:07,279 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:08,769 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:08,772 - root - ERROR - Proximity cache get_context error: 'ProximityRetrievalCache' object has no attribute 'dim'
+2026-01-03 21:23:08,772 - root - INFO - Proximity cache MISS for query: What is agentic ai? (distance=None)
+2026-01-03 21:23:08,772 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:08,772 - root - INFO - Retrieving the context from vector store
+2026-01-03 21:23:08,772 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:09,193 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:09,233 - redisvl.index.index - INFO - Index already exists, not overwriting.
+2026-01-03 21:23:10,260 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:11,392 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:12,890 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:12,894 - root - ERROR - Proximity cache set_context error: 'ProximityRetrievalCache' object has no attribute 'dim'
+2026-01-03 21:23:12,896 - root - INFO - Retrieval latency: 4123 ms
+2026-01-03 21:23:12,897 - root - INFO - Context: ['Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.', 'Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.', 'Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.', 'Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.', 'Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.']
+2026-01-03 21:23:12,897 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:12,897 - root - INFO - Verifying the context
+2026-01-03 21:23:12,897 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:12,898 - root - INFO - Context verification started ...
+2026-01-03 21:23:12,898 - root - INFO - Initializing the chat model for gpt-4.1-nano
+2026-01-03 21:23:12,962 - root - INFO - Calling the model gpt-4.1-nano
+2026-01-03 21:23:14,091 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:23:14,109 - root - INFO - Context verification: True
+2026-01-03 21:23:14,110 - root - INFO - Context verification completed
+2026-01-03 21:23:14,110 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:14,110 - root - INFO - Build prompt for the response generation
+2026-01-03 21:23:14,110 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:14,110 - root - INFO - Prompt:  You are a helpful assistant, answer the following query as best as you can using the provided context.
+Context: Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Query: What is agentic ai? 
+2026-01-03 21:23:14,111 - root - INFO - Prompt is ready...
+2026-01-03 21:23:14,111 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:14,111 - root - INFO - Generating the response....
+2026-01-03 21:23:14,111 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:14,111 - root - INFO - Calling the model gpt-4.1-nano
+2026-01-03 21:23:16,037 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:23:16,043 - root - INFO - Model latency: 1931 ms
+2026-01-03 21:23:16,044 - root - INFO - Response generated..!!!
+2026-01-03 21:23:16,044 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:16,044 - root - INFO - Caching the response for query: What is agentic ai?
+2026-01-03 21:23:16,044 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:16,054 - root - INFO - Redisearch is available
+2026-01-03 21:23:16,059 - root - INFO - Redisearch is available
+2026-01-03 21:23:16,859 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:23:16,872 - root - INFO - Semantic cache set: rag:semcache:702a2782d62efcb16d252a4873a5c124639147ebeadb1d205b7bf1675e66c139
+2026-01-03 21:23:16,873 - root - INFO - Cached response
+2026-01-03 21:23:16,873 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:16,873 - root - INFO - Returning the response
+2026-01-03 21:23:16,873 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:16,873 - root - INFO - Response: Agentic AI is an advanced artificial intelligence system that can independently set sub-goals, reason through problems, plan actions, and execute multiple steps using various tools. Its design allows it to achieve complex, higher-level objectives with minimal human oversight, enabling autonomous decision-making and task completion.
+2026-01-03 21:23:16,873 - root - INFO - Secured response: Agentic AI is an advanced artificial intelligence system that can independently set sub-goals, reason through problems, plan actions, and execute multiple steps using various tools. Its design allows it to achieve complex, higher-level objectives with minimal human oversight, enabling autonomous decision-making and task completion.
+2026-01-03 21:23:16,874 - root - INFO - Guardrails applied response: Agentic AI is an advanced artificial intelligence system that can independently set sub-goals, reason through problems, plan actions, and execute multiple steps using various tools. Its design allows it to achieve complex, higher-level objectives with minimal human oversight, enabling autonomous decision-making and task completion.
+2026-01-03 21:23:16,874 - root - INFO - Number of requests: {REQUEST_COUNTER}
+2026-01-03 21:23:16,874 - root - INFO - Query: What is agentic ai?
+2026-01-03 21:23:16,875 - root - INFO - Model input:  You are a helpful assistant, answer the following query as best as you can using the provided context.
+Context: Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Agentic AI: An advanced AI system capable of autonomously setting sub-goals, reasoning, planning, and executing multi-step actions using various tools to achieve a higher-level objective with minimal human oversight.
+Query: What is agentic ai? 
+2026-01-03 21:23:16,875 - root - INFO - Model output: Agentic AI is an advanced artificial intelligence system that can independently set sub-goals, reason through problems, plan actions, and execute multiple steps using various tools. Its design allows it to achieve complex, higher-level objectives with minimal human oversight, enabling autonomous decision-making and task completion.
+2026-01-03 21:23:16,875 - root - INFO - User ID: 123
+2026-01-03 21:23:16,875 - root - INFO - ---------------------------------
+2026-01-03 21:23:25,032 - root - INFO - Running the RAG pipeline for query: What is agentic ai?
+2026-01-03 21:23:25,032 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:25,032 - root - INFO - Checking if the response is in the exact match cache
+2026-01-03 21:23:25,032 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:23:25,036 - root - INFO - Cache HIT for query: What is agentic ai?
+2026-01-03 21:28:32,627 - root - INFO - Running the RAG pipeline for query: What is agentic AI?
+2026-01-03 21:28:32,628 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:32,628 - root - INFO - Checking if the response is in the exact match cache
+2026-01-03 21:28:32,628 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:32,634 - root - INFO - Cache MISS for query: What is agentic AI?
+2026-01-03 21:28:32,634 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:32,634 - root - INFO - Checking if the response is in the semantic cache
+2026-01-03 21:28:32,634 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:32,639 - root - INFO - Redisearch is available
+2026-01-03 21:28:32,645 - root - INFO - Redisearch is available
+2026-01-03 21:28:33,719 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:28:33,758 - root - INFO - Semantic cache HIT for query: What is agentic AI? (distance=0.00729119777679)
+2026-01-03 21:28:47,884 - root - INFO - Running the RAG pipeline for query: What is AI?
+2026-01-03 21:28:47,885 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:47,885 - root - INFO - Checking if the response is in the exact match cache
+2026-01-03 21:28:47,885 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:47,890 - root - INFO - Cache MISS for query: What is AI?
+2026-01-03 21:28:47,890 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:47,890 - root - INFO - Checking if the response is in the semantic cache
+2026-01-03 21:28:47,890 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:28:47,893 - root - INFO - Redisearch is available
+2026-01-03 21:28:47,896 - root - INFO - Redisearch is available
+2026-01-03 21:28:49,068 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:28:49,081 - root - INFO - Semantic cache HIT for query: What is AI? (distance=0.114116728306)
+2026-01-03 21:29:47,585 - root - INFO - Running the RAG pipeline for query: What is ML?
+2026-01-03 21:29:47,586 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:47,586 - root - INFO - Checking if the response is in the exact match cache
+2026-01-03 21:29:47,586 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:47,594 - root - INFO - Cache MISS for query: What is ML?
+2026-01-03 21:29:47,594 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:47,594 - root - INFO - Checking if the response is in the semantic cache
+2026-01-03 21:29:47,594 - root - INFO - +++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:47,595 - root - INFO - Redisearch is available
+2026-01-03 21:29:47,598 - root - INFO - Redisearch is available
+2026-01-03 21:29:48,131 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:48,140 - root - INFO - Semantic cache MISS for query: What is ML? (distance=0.242365002632)
+2026-01-03 21:29:48,140 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:48,140 - root - INFO - Checking if the context is in the proximity retrieval cache
+2026-01-03 21:29:48,140 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:48,576 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:48,579 - root - ERROR - Proximity cache get_context error: 'ProximityRetrievalCache' object has no attribute 'dim'
+2026-01-03 21:29:48,580 - root - INFO - Proximity cache MISS for query: What is ML? (distance=None)
+2026-01-03 21:29:48,580 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:48,580 - root - INFO - Retrieving the context from vector store
+2026-01-03 21:29:48,580 - root - INFO - ++++++++++++++++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:49,254 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:49,294 - redisvl.index.index - INFO - Index already exists, not overwriting.
+2026-01-03 21:29:49,639 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:50,289 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:51,200 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/embeddings "HTTP/1.1 200 OK"
+2026-01-03 21:29:51,205 - root - ERROR - Proximity cache set_context error: 'ProximityRetrievalCache' object has no attribute 'dim'
+2026-01-03 21:29:51,207 - root - INFO - Retrieval latency: 2626 ms
+2026-01-03 21:29:51,207 - root - INFO - Context: ['Reasoning: The cognitive process, often driven by a Large Language Model (LLM), where the AI agent draws conclusions, makes decisions, and formulates a plan of action based on the perceived information and its overall goal.', 'Reasoning: The cognitive process, often driven by a Large Language Model (LLM), where the AI agent draws conclusions, makes decisions, and formulates a plan of action based on the perceived information and its overall goal.', 'Reasoning: The cognitive process, often driven by a Large Language Model (LLM), where the AI agent draws conclusions, makes decisions, and formulates a plan of action based on the perceived information and its overall goal.', 'Reasoning: The cognitive process, often driven by a Large Language Model (LLM), where the AI agent draws conclusions, makes decisions, and formulates a plan of action based on the perceived information and its overall goal.', 'Reasoning: The cognitive process, often driven by a Large Language Model (LLM), where the AI agent draws conclusions, makes decisions, and formulates a plan of action based on the perceived information and its overall goal.']
+2026-01-03 21:29:51,209 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:51,209 - root - INFO - Verifying the context
+2026-01-03 21:29:51,209 - root - INFO - ++++++++++++++++++++++++++++++++++++++++
+2026-01-03 21:29:51,209 - root - INFO - Context verification started ...
+2026-01-03 21:29:51,210 - root - INFO - Calling the model gpt-4.1-nano
+2026-01-03 21:29:51,721 - httpx - INFO - HTTP Request: POST https://api.openai.com/v1/chat/completions "HTTP/1.1 200 OK"
+2026-01-03 21:29:51,747 - root - INFO - Context verification: False
+2026-01-03 21:29:51,747 - root - INFO - Context verification failed: Out of context. Please verify your query and try again.
